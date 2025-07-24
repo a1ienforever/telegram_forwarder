@@ -6,4 +6,4 @@ class UserEntity(BaseEntity):
     id: int
     username: str
     telegram_id: int
-    settings: "UserSettingsEntity"
+    setting: "UserSettingsEntity"
