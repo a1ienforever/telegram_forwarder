@@ -1,6 +1,5 @@
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import Mapped, relationship
-from sqlalchemy.testing.schema import mapped_column, Table, Column
+from sqlalchemy import ForeignKey, Table, Column, Integer, Boolean
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.interfaces.storage.models.base_model import BaseModel
 
@@ -17,7 +16,7 @@ class Setting(BaseModel):
     id: Mapped[int] = mapped_column(primary_key=True)
     is_sending: Mapped[bool] = mapped_column(default=True)
 
-    user = relationship(
+    user: Mapped["User"] = relationship(
         "User",
         back_populates="settings",
         uselist=False,

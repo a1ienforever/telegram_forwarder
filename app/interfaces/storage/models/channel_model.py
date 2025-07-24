@@ -1,5 +1,4 @@
-from sqlalchemy.orm import Mapped, relationship
-from sqlalchemy.testing.schema import mapped_column
+from sqlalchemy.orm import Mapped, relationship, mapped_column
 
 from app.interfaces.storage.models.base_model import BaseModel
 from app.interfaces.storage.models.setting_model import setting_channel_association
@@ -16,5 +15,4 @@ class Channel(BaseModel):
         secondary=setting_channel_association,
         back_populates='channels',
         lazy='selectin'
-
     )

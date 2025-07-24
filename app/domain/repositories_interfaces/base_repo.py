@@ -8,13 +8,13 @@ T = TypeVar("T", bound=BaseEntity)  # Сущность, наследуемая �
 class BaseRepositories(ABC, Generic[T]):
 
     @abstractmethod
-    async def get_all(self) -> List[T]:
+    async def get_all(self, session) -> List[T]:
         pass
 
     @abstractmethod
-    async def get_by_id(self, id: int) -> Optional[T]:
+    async def get_by_id(self, id: int, session) -> Optional[T]:
         pass
 
     @abstractmethod
-    async def create(self, entity: BaseEntity) -> T:
+    async def create(self, session ,entity: BaseEntity) -> T:
         pass
