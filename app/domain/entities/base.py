@@ -1,5 +1,4 @@
 from pydantic.v1 import BaseModel
 
 
-class BaseEntity(BaseModel):
-    ...
+class BaseEntity(BaseModel): ...

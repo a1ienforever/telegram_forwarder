@@ -1,5 +1,3 @@
-from typing import List, Optional
-
 from sqlalchemy import select
 
 from app.core.db import SessionDep
@@ -11,13 +9,13 @@ class BaseRepo(BaseRepositories):
     mapper = None
 
     @classmethod
-    async def get_all(cls, session: SessionDep) -> List[T]:
+    async def get_all(cls, session: SessionDep) -> list[T]:
         query = select(cls.model)
         result = await session.execute(query).scalars().all()
         return cls.mapper.to_entity_list(result)
 
     @classmethod
-    async def get_by_id(cls, session: SessionDep, id: int) -> Optional[T]:
+    async def get_by_id(cls, session: SessionDep, id: int) -> T | None:
         query = select(cls.model).filter_by(id=id)
         result = await session.execute(query).scalar_one_or_none()
         return cls.mapper.to_entity(result)
@@ -29,4 +27,3 @@ class BaseRepo(BaseRepositories):
         await session.commit()
         await session.refresh(instance)
         return cls.mapper.to_entity(instance)
-

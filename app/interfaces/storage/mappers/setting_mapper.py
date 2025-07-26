@@ -5,7 +5,6 @@ from app.interfaces.storage.models import Setting
 
 
 class SettingMapper(BaseMapper):
-
     @classmethod
     def to_entity(cls, model: Setting) -> UserSettingsEntity:
         return UserSettingsEntity(

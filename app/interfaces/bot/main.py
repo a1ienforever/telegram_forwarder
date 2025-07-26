@@ -7,12 +7,13 @@ from app.core.config import Settings
 app = FastAPI()
 load_dotenv()
 
+
 @app.get("/")
 async def root():
     return {"settings": settings}
 
-if __name__ == '__main__':
 
+if __name__ == "__main__":
     settings = Settings()
     print(settings)
     uvicorn.run(app)

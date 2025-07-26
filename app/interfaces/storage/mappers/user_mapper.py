@@ -5,7 +5,6 @@ from app.interfaces.storage.models import User
 
 
 class UserMapper(BaseMapper):
-
     @classmethod
     def to_entity(cls, model: User):
         return UserEntity(
@@ -18,8 +17,5 @@ class UserMapper(BaseMapper):
     @classmethod
     def from_entity(cls, entity: UserEntity):
         return User(
-            id=entity.id,
-            username=entity.username,
-            telegram_id=entity.telegram_id,
-            setting_id=entity.setting.id
+            id=entity.id, username=entity.username, telegram_id=entity.telegram_id, setting_id=entity.setting.id
         )
