@@ -1,7 +1,7 @@
 from sqlalchemy import select
 
-from app.core.db import SessionDep
-from app.domain.repositories_interfaces.base_repo import BaseRepositories, T
+from app.core.dependencies import SessionDep
+from app.domain.interfaces.repositories.base_repo import BaseRepositories, T
 
 
 class BaseRepo(BaseRepositories):

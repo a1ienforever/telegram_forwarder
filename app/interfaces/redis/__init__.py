@@ -1,0 +1,1 @@
+from .redis_factory import get_storage as get_storage

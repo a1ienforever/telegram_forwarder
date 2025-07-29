@@ -1,6 +1,10 @@
-def main():
-    print("Hello from telegram-forwarder!")
+import asyncio
+import logging
 
+from app.interfaces.bot import start_bot
 
 if __name__ == "__main__":
-    main()
+    try:
+        asyncio.run(start_bot())
+    except (KeyboardInterrupt, SystemExit):
+        logging.error("Бот был выключен!")

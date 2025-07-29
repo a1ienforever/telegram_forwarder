@@ -1,7 +1,7 @@
 from abc import abstractmethod
 
 from app.domain.entities.channel import ChannelEntity
-from app.domain.repositories_interfaces.base_repo import BaseRepositories
+from app.domain.interfaces.repositories.base_repo import BaseRepositories
 
 
 class ChannelRepository(BaseRepositories):
