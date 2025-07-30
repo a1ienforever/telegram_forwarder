@@ -1,6 +1,6 @@
 from app.domain.entities.channel import ChannelEntity
-from app.interfaces.storage.mappers.base_mapper import BaseMapper
-from app.interfaces.storage.models import Channel
+from app.adapters.database.mappers.base_mapper import BaseMapper
+from app.adapters.database.models import Channel
 
 
 class ChannelMapper(BaseMapper):

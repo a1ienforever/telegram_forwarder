@@ -1,11 +1,11 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.interfaces.storage.models import BaseModel
+from app.adapters.database.models import BaseModel
 
 
 class User(BaseModel):
-    from app.interfaces.storage.models import Setting
+    from app.adapters.database.models import Setting
 
     __tablename__ = "users"
 

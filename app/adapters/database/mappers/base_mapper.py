@@ -1,6 +1,6 @@
 from typing import TypeVar
 
-from app.interfaces.storage.models import BaseModel
+from app.adapters.database.models import BaseModel
 
 T = TypeVar("T", bound=BaseModel)
 

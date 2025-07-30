@@ -1,7 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Table
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.interfaces.storage.models import BaseModel
+from app.adapters.database.models import BaseModel
 
 setting_channel_association = Table(
     "setting_channel_association",
@@ -12,7 +12,7 @@ setting_channel_association = Table(
 
 
 class Setting(BaseModel):
-    from app.interfaces.storage.models import User
+    from app.adapters.database.models import User
     __tablename__ = "settings"
 
     id: Mapped[int] = mapped_column(primary_key=True)

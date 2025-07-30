@@ -1,7 +1,7 @@
 from app.domain.entities.user_settings import UserSettingsEntity
-from app.interfaces.storage.mappers.base_mapper import BaseMapper
-from app.interfaces.storage.mappers.channel_mapper import ChannelMapper
-from app.interfaces.storage.models import Setting
+from app.adapters.database.mappers.base_mapper import BaseMapper
+from app.adapters.database.mappers.channel_mapper import ChannelMapper
+from app.adapters.database.models import Setting
 
 
 class SettingMapper(BaseMapper):

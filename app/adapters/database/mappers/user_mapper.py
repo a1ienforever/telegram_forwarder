@@ -1,7 +1,7 @@
 from app.domain.entities.user import UserEntity
-from app.interfaces.storage.mappers.base_mapper import BaseMapper
-from app.interfaces.storage.mappers.setting_mapper import SettingMapper
-from app.interfaces.storage.models import User
+from app.adapters.database.mappers.base_mapper import BaseMapper
+from app.adapters.database.mappers.setting_mapper import SettingMapper
+from app.adapters.database.models import User
 
 
 class UserMapper(BaseMapper):

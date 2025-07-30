@@ -8,7 +8,7 @@ from alembic import context
 
 sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))
 
-import app.interfaces.storage.models as model
+import app.adapters.database.models as model
 from app.core import settings
 
 # this is the Alembic Config object, which provides

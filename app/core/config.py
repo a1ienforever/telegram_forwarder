@@ -1,66 +1,56 @@
+from dataclasses import dataclass, field
+from typing import Optional
 
+from dotenv import load_dotenv
+from icecream import install
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+install()
+ic.configureOutput(includeContext=True)
 
 class CustomBaseSettings(BaseSettings):
-    """Базовый класс для настроек с поддержкой переопределения префикса для переменных окружения."""
-    ...
+    """Базовый класс для всех конфигураций."""
 
-class DatabaseConfig(CustomBaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_prefix="DATABASE_")
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    host: str = None
-    password: str = None
-    user: str = None
-    database: str = None
+
+class DatabaseConfig(CustomBaseSettings, env_prefix="DATABASE_"):
+
+    host: str = "localhost"
+    password: str = "<PASSWORD>"
+    user: str = "root"
+    name: str = "root"
     port: int = 5432
 
     def dsn(self) -> str:
-        return f"postgresql+asyncpg://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}"
+        return f"postgresql+asyncpg://{self.user}:{self.password}@{self.host}:{self.port}/{self.name}"
 
 
+class TelegramConfig(CustomBaseSettings, env_prefix="TELEGRAM_"):
 
-class TelegramConfig(CustomBaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_prefix="TELEGRAM_")
-    token: str = None
+    token: str = "Token"
     admin_ids: list[int] = []
-    use_redis: bool = None
-    bot_name: str = None
+    use_redis: bool = False
+    bot_name: str = "bot_name"
 
 
-class RedisConfig(CustomBaseSettings):
-    """
-    Redis configuration class.
+class RedisConfig(CustomBaseSettings, env_prefix="REDIS_"):
 
-    Attributes
-    ----------
-    redis_pass : Optional(str)
-        The password used to authenticate with Redis.
-    redis_port : Optional(int)
-        The port where Redis server is listening.
-    redis_host : Optional(str)
-        The host where Redis server is located.
-    """
-    model_config = SettingsConfigDict(env_file=".env", env_prefix="REDIS_")
-
-    redis_pass: str = None
-    redis_port: int = None
-    redis_host: str = None
+    password: Optional[str] = None
+    port: int = 6379
+    host: str = "localhost"
 
     def dsn(self) -> str:
-        """
-        Constructs and returns a Redis DSN (Data Source Name) for this database configuration.
-        """
         if self.redis_pass:
             return f"redis://:{self.redis_pass}@{self.redis_host}:{self.redis_port}/0"
-        else:
-            return f"redis://{self.redis_host}:{self.redis_port}/0"
+        return f"redis://{self.redis_host}:{self.redis_port}/0"
 
 
-class Settings:
+
+class Settings(CustomBaseSettings):
     telegram: TelegramConfig = TelegramConfig()
-    redis: RedisConfig = RedisConfig()
     database: DatabaseConfig = DatabaseConfig()
+    redis: RedisConfig = RedisConfig()
 
 
 settings = Settings()

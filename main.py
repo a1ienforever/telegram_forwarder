@@ -1,7 +1,7 @@
 import asyncio
 import logging
 
-from app.interfaces.bot import start_bot
+from app.adapters.bot import start_bot
 
 if __name__ == "__main__":
     try:

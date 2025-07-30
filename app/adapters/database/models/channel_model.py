@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.interfaces.storage.models.base_model import BaseModel
-from app.interfaces.storage.models.setting_model import setting_channel_association
+from app.adapters.database.models.base_model import BaseModel
+from app.adapters.database.models.setting_model import setting_channel_association
 
 
 class Channel(BaseModel):
